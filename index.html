@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="styles.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Modak|Sigmar+One|Slabo+27px|Source+Sans+Pro:400,700,900" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous">
+</script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<a href="#"><h1 id="header-logo"><span>Git</span>Search</h1></a>
+	<h3 id="header-text" class="text-center">A profile search platform for Github, built responsively with Bootstrap, Github API, AJAX & jQuery.</h1>
+
+	<div class="container">
+
+		<div class="search-box">
+			<div class="card text-center">
+				<div class="card-header">
+					<a href="http://www.github.com" id="nomargin" class="btn btn-info">Find your friends and colleagues on Github!</a>
+				</div>
+				<div class="card-body">
+				<form id="search-form">
+					<input required type="text" name="handle" id="handle" placeholder="What's their username?">
+				<br><br>
+				<button type="submit" class="btn btn-success" id="search-btn">Search</button>
+				</form>
+				</div>
+				<div class="card-footer text-muted">
+				<p>Designed & Developed by Codeberry</p>
+				</div>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div id="profile">
+
+		</div>
+
+	</div>
+<a href="http://www.codeberry.ca" target="_blank"><img src="logo.png" id="codeberry" alt="codeberry web development services"></a>
+</div>
+
+<script>
+
+	function getProfile(e){
+		e.preventDefault();
+		$('.search-box').css("display", "none");
+		$('#profile').fadeIn("slow");
+		var username = document.getElementById('handle').value;
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				var user = JSON.parse(xhttp.responseText);
+				var updayte = user.updated_at;
+				updayte = updayte.split('T', 1);
+				document.getElementById('profile').innerHTML =
+					`<div class="card text-center">
+						<div class="card-header">
+						<p id="nomargin" class="btn btn-success">Followers: ${user.followers}</a>
+						</div>
+						<div class="card-body">
+						<h2 id="username">${user.name}</h2>
+						<img src="${user.avatar_url}" id="avy">
+						<h5 class="card-title">${user.bio}</h5>
+						<p class="card-text company">${user.company}</p>
+						<a href="${user.html_url}" class="btn btn-primary">Check out their Github</a>
+						<a href="#" class="btn btn-info">Search Again</a>
+						</div>
+						<div class="card-footer text-muted">
+						Last updated: ${updayte}
+						</div>
+					</div>`
+			}
+		}
+		xhttp.open('GET', 'https://api.github.com/users/' + username, true);
+		xhttp.send();
+	}
+
+	document.getElementById('search-form').addEventListener('submit', getProfile, false);
+
+</script>
+
+ </body>
+ </html>

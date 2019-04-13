@@ -1,0 +1,98 @@
+body {
+	height: 97vh;
+	background-image: url('bg01.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+* {
+	transition: font-size 1s;
+}
+
+#profile {
+	display: none;
+}
+
+#header-logo {
+	font-family: Source Sans Pro;
+	font-weight: 900;
+	font-size: 100px;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0;
+	color: #28a745;
+	letter-spacing: -3px;
+}
+
+
+#github {
+	width: 30%;
+	display: block;
+	margin: 20px auto 0 auto;
+}
+
+#nomargin {
+	margin: 0;
+}
+
+#avy {
+	height: 200px;
+	border-radius: 100px;
+	margin: 20px 0;
+}
+
+#codeberry {
+	height: 120px;
+	width: 120px;
+	display: block;
+	margin: 20px auto;
+}
+
+#handle {
+	width: 60%;
+	padding: 5px;
+}
+
+.card-footer p {
+	margin: 0;
+}
+
+.search-box {
+	margin-top: 40px;
+}
+
+#username {
+	font-family: Source Sans Pro;
+	font-weight: 700;
+}
+
+#header-logo span {
+	color: #5884c6 !important;
+	font-size: 70px;
+}
+
+a:hover {
+	text-decoration: none !important;
+}
+
+.text-center {
+	font-family: Source Sans Pro;
+	font-weight: 400;
+}
+
+.company {
+	font-weight: 700;
+}
+
+@media screen and (max-width: 700px) {
+	#header-logo {
+		font-size: 72px;
+	}
+	#header-logo span {
+		font-size: 48px;
+	}
+	#header-text {
+		font-size: 18px;
+	}
+}
